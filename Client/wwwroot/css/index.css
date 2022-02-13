@@ -1,0 +1,80 @@
+﻿.main-container {
+    border: 1px solid #6c757d;
+    padding: 12px;
+}
+
+.main-container .header {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.main-container .form-summary {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 12px;
+}
+
+.main-container .form-summary .form {
+    width: 50%;
+}
+
+.main-container .form-summary .form .field {
+    display: flex;
+    margin-top: 12px;
+}
+
+.main-container .form-summary .form .field:first-child {
+    margin-top: 0px;
+}
+
+.main-container .form-summary .form .field .label {
+    width: 150px;
+}
+
+.main-container .form-summary .form .field .text-input {
+    width: 150px;
+}
+
+.main-container .form-summary .form .actions {
+    display: flex;
+    margin-top: 12px;
+    margin-left: 150px;
+}
+
+.main-container .form-summary .form .actions .save-button {
+    color: #FFFFFF;
+    background-color: #0000FF;
+    padding: 4px 8px;
+    border-radius: 3px;
+    margin-right: 8px;
+}
+
+.main-container .form-summary .form .actions .reset-button {
+    color: #FFFFFF;
+    background-color: #0099CC;
+    padding: 4px 8px;
+    border-radius: 3px;
+}
+
+.main-container .form-summary .graph {
+    width: 50%;
+}
+
+.main-container .form-summary .graph .chart-header {
+    font-weight: bold;
+}
+
+.main-container .form-summary .graph .chart {
+    
+}
+
+.main-container .divider {
+    border-top: 1px solid #6c757d;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.main-container .table-data .token-symbol {
+    text-decoration: none;
+}

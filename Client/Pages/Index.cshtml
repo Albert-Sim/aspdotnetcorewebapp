@@ -1,0 +1,76 @@
+﻿@page
+@model Client.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+@section Styles {
+    <link href="@Url.Content("~/css/index.css")" rel="stylesheet" type="text/css" />
+}
+
+<div class="main-container">
+    <div class="header">Save / Update Token</div>
+    <div class="form-summary">
+        <form class="form" method="post">
+            <div class="field">
+                <label for="name" class="label">Name</label>
+                <input type="text" id="name" class="text-input" placeholder="Name" />
+            </div>
+            <div class="field">
+                <label for="symbol" class="label">Symbol</label>
+                <input type="text" id="symbol" class="text-input" placeholder="Symbol" />
+            </div>
+            <div class="field">
+                <label for="contact-address" class="label">Contact Address</label>
+                <input type="text" id="contact-address" class="text-input" placeholder="Contact Address" />
+            </div>
+            <div class="field">
+                <label for="total-supply" class="label">Total Supply</label>
+                <input type="text" id="total-supply" class="text-input" placeholder="Total Supply" />
+            </div>
+            <div class="field">
+                <label for="total-holders" class="label">Total Holders</label>
+                <input type="text" id="total-holders" class="text-input" placeholder="Total Holders" />
+            </div>
+            <div class="actions">
+                <button class="save-button" type="submit" asp-page-handler="SaveToken">Save</button>
+                <button class="reset-button">Reset</button>
+            </div>
+        </form>
+        <div class="graph">
+            <div class="chart-header">Token Statistics by Total Supply</div>
+            <div class="chart">Chart</div>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div>Test button2</div>
+    <div class="table-data">
+        <table>
+            <thead>
+                <tr>
+                <th>Rank</th>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Contract Address</th>
+                <th>Total Holders</th>
+                <th>Total Supply</th>
+                <th>Total Supply %</th>
+            </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Tokens.Length; i++)
+                {
+                    <tr>
+                        <td class="rank">@(i+1)</td>
+                        <td><a asp-page="./Detail" asp-route-id="@Model.Tokens[i].Id" class="token-symbol">@Model.Tokens[i].Symbol</a></td>
+                        <td class="name">@Model.Tokens[i].Name</td>
+                        <td class="contract-address">@Model.Tokens[i].ContractAddress</td>
+                        <td class="total-holders">@Model.Tokens[i].TotalHolders</td>
+                        <td class="total-supply">@Model.Tokens[i].TotalSupply</td>
+                        <td class="total-supply-percentage">percentage</td>
+                        <td>Edit</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

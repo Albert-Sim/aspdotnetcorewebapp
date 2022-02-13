@@ -1,0 +1,30 @@
+﻿.back-button {
+    display: inline-block;
+    padding: 12px;
+    margin-bottom: 12px;
+    text-decoration: none;
+}
+
+.main-container {
+    border: 1px solid #6c757d;
+    padding: 12px;
+}
+
+.main-container .token-contract-address {
+    font-weight: bold;
+}
+
+.main-container .field {
+    border-bottom: 1px solid #6c757d;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.main-container .field:last-child {
+    border-bottom: none;
+}
+
+.main-container .field .label {
+    width: 150px;
+    display: inline-block;
+}

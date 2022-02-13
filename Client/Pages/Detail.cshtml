@@ -1,0 +1,29 @@
+﻿@page "{id:int}"
+@model Client.Pages.DetailModel
+@{
+}
+
+@section Styles {
+    <link href="@Url.Content("~/css/detail.css")" rel="stylesheet" type="text/css" />
+}
+
+<a asp-page="./Index" class="back-button">Back</a>
+<div class="main-container">
+    <div class="token-contract-address">@Model.Token.ContractAddress</div>
+    <div class="field">
+        <span class="label">Price:</span>
+        <span class="value">$ @Model.Token.Price</span>
+    </div>
+    <div class="field">
+        <span class="label">Total Supply:</span>
+        <span class="value">@Model.Token.TotalSupply</span>
+    </div>
+    <div class="field">
+        <span class="label">Total Holders:</span>
+        <span class="value">@Model.Token.TotalHolders</span>
+    </div>
+    <div class="field">
+        <span class="label">Name:</span>
+        <span class="value">@Model.Token.Name</span>
+    </div>
+</div>
