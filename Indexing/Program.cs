@@ -9,11 +9,11 @@ if (args.Length == 0)
     return;
 }
 
-string api = "https://eth-mainnet.alchemyapi.io/v2/{0}";
+string api = "https://eth-mainnet.alchemyapi.io/v2/";
 string apiKey = args[0];
 int parallelCount = 8;
 
-await Parallel.ForEachAsync(Enumerable.Range(12100001, 5), new ParallelOptions() { MaxDegreeOfParallelism = parallelCount }, async (blockNumber, _) =>
+await Parallel.ForEachAsync(Enumerable.Range(12100001, 500), new ParallelOptions() { MaxDegreeOfParallelism = parallelCount }, async (blockNumber, _) =>
 {
     await Task.Run(async () =>
     {
@@ -32,7 +32,7 @@ await Parallel.ForEachAsync(Enumerable.Range(12100001, 5), new ParallelOptions()
 
             StringContent contentGetBlock = new(JsonSerializer.Serialize(bodyGetBlock), Encoding.UTF8, "application/json");
             
-            HttpResponseMessage responseMessageGetBlock = await new HttpClient().PostAsync(String.Format(api, apiKey), contentGetBlock);
+            HttpResponseMessage responseMessageGetBlock = await new HttpClient().PostAsync(api + apiKey, contentGetBlock);
             if (responseMessageGetBlock.StatusCode != HttpStatusCode.OK)
                 return;
 
@@ -58,7 +58,7 @@ await Parallel.ForEachAsync(Enumerable.Range(12100001, 5), new ParallelOptions()
 
             StringContent contentGetBlockTransactionCount = new(JsonSerializer.Serialize(bodyGetBlockTransactionCount), Encoding.UTF8, "application/json");
 
-            HttpResponseMessage responseMessageGetBlockTransactionCount = await new HttpClient().PostAsync(String.Format(api, apiKey), contentGetBlockTransactionCount);
+            HttpResponseMessage responseMessageGetBlockTransactionCount = await new HttpClient().PostAsync(api + apiKey, contentGetBlockTransactionCount);
             if (responseMessageGetBlockTransactionCount.StatusCode != HttpStatusCode.OK)
                 return;
 
@@ -95,7 +95,7 @@ await Parallel.ForEachAsync(Enumerable.Range(12100001, 5), new ParallelOptions()
 
                     StringContent contentGetTransaction = new(JsonSerializer.Serialize(bodyGetTransaction), Encoding.UTF8, "application/json");
 
-                    HttpResponseMessage responseMessageGetTransaction = await new HttpClient().PostAsync(String.Format(api, apiKey), contentGetTransaction);
+                    HttpResponseMessage responseMessageGetTransaction = await new HttpClient().PostAsync(api + apiKey, contentGetTransaction);
                     if (responseMessageGetTransaction.StatusCode != HttpStatusCode.OK)
                         return;
 
