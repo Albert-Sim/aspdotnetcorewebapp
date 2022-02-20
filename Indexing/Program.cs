@@ -19,12 +19,14 @@ await Parallel.ForEachAsync(Enumerable.Range(12100001, 500), new ParallelOptions
     {
         try
         {
+            Console.WriteLine(string.Format("{0}: Start processing {1}", DateTime.Now, blockNumber));
+            string blockNumberInHex = "0x" + blockNumber.ToString("X");
             RequestBody bodyGetBlock = new()
             {
                 Method = "eth_getBlockByNumber",
                 Params = new object[]
                 {
-                    "0x" + blockNumber.ToString("X"),
+                    blockNumberInHex,
                     false
                 },
                 Id = 0
@@ -47,11 +49,10 @@ await Parallel.ForEachAsync(Enumerable.Range(12100001, 500), new ParallelOptions
 
             RequestBody bodyGetBlockTransactionCount = new()
             {
-                Method = "eth_getBlockByNumber",
+                Method = "eth_getBlockTransactionCountByNumber",
                 Params = new object[]
                 {
-                    "0x" + blockNumber.ToString("X"),
-                    false
+                    blockNumberInHex,
                 },
                 Id = 0
             };
@@ -78,35 +79,33 @@ await Parallel.ForEachAsync(Enumerable.Range(12100001, 500), new ParallelOptions
                 return;
             }
 
-            await Parallel.ForEachAsync(Enumerable.Range(0, transactionCount), new ParallelOptions() { MaxDegreeOfParallelism = parallelCount }, async (index, _) =>
+            foreach (int index in Enumerable.Range(0, transactionCount))
             {
-                await Task.Run(async () =>
+                Console.WriteLine(string.Format("Retrieving block {0}, transaction {1}", blockNumber, index));
+                RequestBody bodyGetTransaction = new()
                 {
-                    RequestBody bodyGetTransaction = new()
+                    Method = "eth_getTransactionByBlockNumberAndIndex",
+                    Params = new object[]
                     {
-                        Method = "eth_getTransactionByBlockNumberAndIndex",
-                        Params = new object[]
-                        {
-                            "0x" + blockNumber.ToString("X"),
-                            "0x" + index.ToString("X")
-                        },
-                        Id = 0
-                    };
+                        blockNumberInHex,
+                        "0x" + index.ToString("X")
+                    },
+                    Id = 0
+                };
 
-                    StringContent contentGetTransaction = new(JsonSerializer.Serialize(bodyGetTransaction), Encoding.UTF8, "application/json");
+                StringContent contentGetTransaction = new(JsonSerializer.Serialize(bodyGetTransaction), Encoding.UTF8, "application/json");
 
-                    HttpResponseMessage responseMessageGetTransaction = await new HttpClient().PostAsync(api + apiKey, contentGetTransaction);
-                    if (responseMessageGetTransaction.StatusCode != HttpStatusCode.OK)
-                        return;
+                HttpResponseMessage responseMessageGetTransaction = await new HttpClient().PostAsync(api + apiKey, contentGetTransaction);
+                if (responseMessageGetTransaction.StatusCode != HttpStatusCode.OK)
+                    return;
 
-                    ResponseBody? responseBodyGetTransaction = JsonSerializer.Deserialize<ResponseBody>(responseMessageGetTransaction.Content.ReadAsStringAsync().Result);
-                    if (responseBodyGetTransaction == null || responseBodyGetTransaction.Result == null)
-                        return;
+                ResponseBody? responseBodyGetTransaction = JsonSerializer.Deserialize<ResponseBody>(responseMessageGetTransaction.Content.ReadAsStringAsync().Result);
+                if (responseBodyGetTransaction == null || responseBodyGetTransaction.Result == null)
+                    return;
 
-                    //Insert transaction record into database here
+                //Insert transaction record into database here
 
-                }, CancellationToken.None);
-            });
+            }
         }
         catch (Exception ex)
         {
