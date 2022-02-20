@@ -1,0 +1,15 @@
+C:\Users\asjg6\source\repos\Etherscan\Indexing\bin\Debug\net6.0\Indexing.exe
+C:\Users\asjg6\source\repos\Etherscan\Indexing\bin\Debug\net6.0\Indexing.deps.json
+C:\Users\asjg6\source\repos\Etherscan\Indexing\bin\Debug\net6.0\Indexing.runtimeconfig.json
+C:\Users\asjg6\source\repos\Etherscan\Indexing\bin\Debug\net6.0\Indexing.dll
+C:\Users\asjg6\source\repos\Etherscan\Indexing\bin\Debug\net6.0\ref\Indexing.dll
+C:\Users\asjg6\source\repos\Etherscan\Indexing\bin\Debug\net6.0\Indexing.pdb
+C:\Users\asjg6\source\repos\Etherscan\Indexing\obj\Debug\net6.0\Indexing.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\asjg6\source\repos\Etherscan\Indexing\obj\Debug\net6.0\Indexing.AssemblyInfoInputs.cache
+C:\Users\asjg6\source\repos\Etherscan\Indexing\obj\Debug\net6.0\Indexing.AssemblyInfo.cs
+C:\Users\asjg6\source\repos\Etherscan\Indexing\obj\Debug\net6.0\Indexing.csproj.CoreCompileInputs.cache
+C:\Users\asjg6\source\repos\Etherscan\Indexing\obj\Debug\net6.0\Indexing.dll
+C:\Users\asjg6\source\repos\Etherscan\Indexing\obj\Debug\net6.0\ref\Indexing.dll
+C:\Users\asjg6\source\repos\Etherscan\Indexing\obj\Debug\net6.0\Indexing.pdb
+C:\Users\asjg6\source\repos\Etherscan\Indexing\obj\Debug\net6.0\Indexing.genruntimeconfig.cache
+C:\Users\asjg6\source\repos\Etherscan\Indexing\obj\Debug\net6.0\Indexing.csproj.AssemblyReference.cache
